@@ -1,0 +1,341 @@
+<section id="intro">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f8f9fa00; z-index: 100">
+    <!-- <a class="navbar-brand" routerLink="/"><img width="200" src="assets/img/recycling_1.jpg" alt="" title=""></a> -->
+    <h2 style="color:white">IRecycle</h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link click"> <span style="font-weight: 600px !important">Home</span> </a>
+        </li>
+        <li class="nav-item click ml-3">
+          <a class="nav-link" (click)="scroll('browse')" style="font-weight: 600;">How it Works</a>
+        </li>
+        <li class="nav-item click ml-3">
+          <a class="nav-link" (click)="scroll('footer')" style="font-weight: 600;">Support </a>
+        </li>
+        <li class="nav-item click ml-3" *ngIf="!user" routerLink="/login">
+          <a class="nav-link" style="font-weight: 600;">Login </a>
+        </li>
+        <li class="nav-item click ml-3" *ngIf="user">
+          <a class="nav-link" routerLink="/dashboard" style="font-weight: 600">Dashboard </a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 ml-4">
+        <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/plans" style="border: 1px solid #ffffff;
+        border-radius: 3em;
+        font-size: 1em; color:#ffffff">Get
+          Started</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="intro-container">
+    <h1 class="mb-4 pb-0">On-Demand <span>Marketers</span></h1>
+    <p class="mb-4 pb-0">We are the team behind the most of the successful companies in the MENA region</p>
+    <!-- <a href="https://www.youtube.com/watch?v=H74_4bZ6YBI" class="venobox play-btn mb-4" data-vbtype="video"
+      data-autoplay="true"></a> -->
+    <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/plans">Browse Digital Marketing Service</button>
+    <div class="scroll-indicator">
+      <span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <!--Digital Section-->
+  <section id="categories" class="section-with-bg">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="hotel">
+            <div class="hotel-img">
+              <img src="assets/img/garbage/garbage1.jpg" alt="Hotel 1" class="img-fluid" style="padding: 15px">
+            </div>
+            <h3><a href="#">Functionality one</a></h3>
+            <p>Our team mostly get summoned by CEO/CMO to help their performance marketing department. Scalability and
+              efficiency is our expertise. We are the team behind that support the most top-tier digital agency in the
+              region.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="hotel">
+            <div class="hotel-img">
+              <img src="assets/img/garbage/garbage2.jpg" alt="Hotel 2" class="img-fluid" style="padding: 15px">
+            </div>
+            <h3><a href="#">Functionality two</a></h3>
+            <p>Hand-curated, industry-tested, marketer-approved, digital marketing services for your needs. From Social
+              to Data, and Content to Sales – we have what you need.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="hotel">
+            <div class="hotel-img">
+              <img src="assets/img/garbage/garbage3.jpg" alt="Hotel 3" class="img-fluid" style="padding: 15px">
+            </div>
+            <h3><a href="#">100+ Happy Customers</a></h3>
+            <p>We believe in building long-lasting (mutually-beneficial) relationships. We're here to help you grow
+              your business. And ours in return.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <section id="clients" style="background: #2B8BE3;
+  background-image: linear-gradient(-224deg, #2B8BE3 0%, #663FB5 100%);
+  opacity: 1;"
+    class="row pt-5 pb-5 pr-2 pl-2">
+    <div class="col-md-2 col-sm-12 text-center">
+      <img src="assets/img/clients/almosafer.png" alt="">
+    </div>
+    <div class="col-md-2 col-sm-12 text-center">
+      <img src="assets/img/clients/etihad.png" alt="">
+    </div>
+    <div class="col-md-3 col-sm-12 text-center">
+      <img src="assets/img/clients/taaleem.png" alt="">
+    </div>
+    <div class="col-md-2 col-sm-12 text-center">
+      <img src="assets/img/clients/tajawal.png" alt="">
+    </div>
+    <div class="col-md-2 col-sm-12 text-center">
+      <img src="assets/img/clients/wojoooh.png" alt="">
+    </div>
+  </section>
+
+  <section id="miniClients" style="background: #2B8BE3;
+  background-image: linear-gradient(-224deg, #2B8BE3 0%, #663FB5 100%);
+  opacity: 1;"
+    class=" pt-5 pb-5 pr-2 pl-2">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="assets/img/clients/almosafer.png" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/img/clients/etihad.png" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/img/clients/taaleem.png" alt="Third slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/img/clients/tajawal.png" alt="4 slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/img/clients/wojoooh.png" alt="5 slide">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="featured-plans" class="mb-4">
+    <div class="container">
+      <!-- <div class="section-header"> -->
+      <h2 class="text-center">FEATURED PLANS</h2>
+      <p class="text-center">Needle moving, up and to the right, hockey stick growth tactics.</p>
+      <!-- </div> -->
+
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mt-2 mb-2" *ngFor="let item of featuredPlans; index as i; first as isFirst">
+
+          <div class="card click" (click)='details(item.id)'>
+            <div class="card__shadow featured-plan">
+              <img class="card-img-top bg--gradient" [src]="getImage(item.title)" alt="">
+              <div class="card-body details" data-equalizer-watch="" style="height: 251px;">
+                <div class="card__header--gigs row">
+                  <h6 class="card-title float-left col text-light">{{item.title|translate}}</h6>
+                  <p class="text-right col">AED {{item.price}}</p>
+                </div>
+                <div class="card__rating mt-4">
+
+                  <!-- <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+                  <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating> -->
+
+                  <i class="fas fa-star" style="color: #FF3366;"></i>
+                  <i class="fas fa-star" style="color: #FF3366;"></i>
+                  <i class="fas fa-star" style="color: #FF3366;"></i>
+                  <i class="fas fa-star" style="color: #FF3366;"></i>
+                  <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                  <span class="card__reviews ml-1 text-light">{{item.reviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                </div>
+
+                <p class="card-text social">{{item.description}}</p>
+                <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div id="browse"></div>
+
+  <section id="" class="section-with-bg pt-5 pb-5">
+    <div class="row mt-5 mb-5 sect">
+      <div class="col ml-5 mb-4">
+        <div class="container">
+          <h2 class="mb-4">Browse the marketplace.</h2>
+          <h5 class="text-muted mb-4">
+            Is your social game a mess? Don’t know why your website visitors aren’t converting? Fall behind on this
+            quarter’s KPIs? Don’t worry. In just a few clicks, you can get expert digital marketers to get you back on
+            track.
+          </h5>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Quickly find the marketing resources you need:</h5>
+              <p><i class="fas fa-search mr-3"></i> Use search to find exactly what you’re looking for.</p>
+              <p><i class="fas fa-sliders-h mr-3"></i> Drill down into specific categories with filters.</p>
+              <p><i class="far fa-heart mr-3"></i> Save your favorites to… well, favorites.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <img id="img-sect-1" class="float-right" src="assets/img/sections/image1.png" alt="">
+      </div>
+    </div>
+
+  </section>
+
+  <section id="" class="pt-5 pb-5">
+    <div class="row mt-5 mb-5 sect">
+      <div class="col mb-4">
+        <img id="img-sect-2" src="assets/img/sections/image2.png" alt="">
+      </div>
+      <div class="col mr-5">
+        <div class="container">
+          <h2 class="mb-4">Hire a Geek. (or three.).</h2>
+          <h5 class="text-muted mb-4">
+            From Social Media to Data Science, our geeks have the skills you need to grow your business. The best part?
+            We already did all the heavy lifting. Every geek has been vetted, each service hand-curated, and price
+            pre-negotiated. You’re welcome. ;)
+          </h5>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Growth Geeks are perfect for:</h5>
+              <p><i class="fas fa-rocket mr-3"></i> Product launches, promotions, and daily marketing.</p>
+              <p><i class="fas fa-exchange-alt mr-3"></i> Filling in the gaps on your marketing team.</p>
+              <p><i class="far fa-handshake mr-3"></i> Freeing up internal resources.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sit-back" class="section-with-bg pt-5 pb-5">
+    <div class="row mt-5 mb-5 sect">
+      <div class="col ml-5 mb-4">
+        <div class="container">
+          <h2 class="mb-4">Sit Back. Relax. And Enjoy the Raise.</h2>
+          <h5 class="text-muted mb-4">
+            When you hire a Growth Geek, we want you to know you're in good hands. That's why we only accept the top 1%
+            of applicants. This allows us to provide you with exceptional service, peace-of-mind, and give you more
+            time
+            to focus on your business.
+          </h5>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get peace of mind with:</h5>
+              <p><i class="fas fa-dollar-sign mr-3"></i> No contracts. No fine print. No nonsense.</p>
+              <p><i class="fas fa-file-signature mr-2"></i> 30 Day Money Back Guarantee.</p>
+              <p><i class="fas fa-glasses mr-2"></i> Dedicated support. Call, chat, email, or bat signal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <img id="img-sect-3" class="float-right" src="assets/img/sections/imac.svg" alt="">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!--Footer-->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 footer-info">
+          <!-- <img src="assets/img/SEARCHFUSELogo.png" alt="IRecycle"> -->
+          <h2 style="color:white">IRecycle</h2>
+          <p>We are here since 2000, bla bla bla.</p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>RESOURCES</h4>
+          <ul>
+            <li><i class="fa fa-angle-right"></i> <a >Home</a></li>
+            <li><i class="fa fa-angle-right"></i> <a (click)="scroll('browse')">How it Works</a></li>
+            <li><i class="fa fa-angle-right"></i> <a routerLink="/plans">Plans</a></li>
+            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li> -->
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h4>CONNECT</h4>
+          <p>
+           calle<br>
+            reparto,<br>
+            postal code, ... <br>
+            <strong>Phone:</strong> 000000000 <br>
+            <strong>Email:</strong> IRecycle@gmail.qt<br>
+          </p>
+
+          <div class="social-links">
+            <a href="https://twitter.com/SearchFuse"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/searchfuse/"><i class="fab fa-facebook-f"></i></a>
+            <!-- <a href="https://www.instagram.com/searchfuse/"><i class="fab fa-instagram"></i></a> -->
+            <a href="https://www.linkedin.com/company/searchfuse/"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; 2018 <strong>IRecycle</strong>.
+    </div>
+    <div class="credits">
+      Built with <i class="fas fa-heart"></i> in Qatar.
+    </div>
+  </div>
+</footer>

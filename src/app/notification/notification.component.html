@@ -1,0 +1,77 @@
+<dashboard-navbar></dashboard-navbar>
+
+<div id="wrapper">
+
+  <dashboard-sidebar></dashboard-sidebar>
+
+  <div id="content-wrapper">
+
+    <div class="container-fluid">
+      <h2>Notifications</h2>
+      <hr>
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Notifications</li>
+      </ol>
+
+      
+      <!-- DataTables Example -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+          Notifications</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table " id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>DATE</th>
+                  <th>FROM</th>
+                  <th>CONTENT</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of notifications; index as i; first as isFirst">
+                <tr [ngClass]="{'table-active': !item.read}">
+                  <td (click)="goTo(item)" class="click">{{item.date.substr(0,item.date.indexOf("T"))}}</td>
+                  <td (click)="goTo(item)" class="click">{{item.fromName}}</td>
+                  <td (click)="goTo(item)" class="click">{{item.text}}</td>
+                  <td>
+                    <button type="button" class="btn btn-success" (click)="openNotification(item)" *ngIf="!item.read" title="Mark as read"><i class="far fa-bell"></i></button>
+                    <button type="button" class="btn btn-success" (click)="closeNotification(item)" *ngIf="item.read" title="Mark as unread"><i class="fas fa-bell"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+
+
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<footer id="footer" style="width: auto !important">
+  <div class="container">
+    <div class="copyright">
+      &copy; 2018 <strong>Searchfuse Marketing Management</strong>.
+    </div>
+    <div class="credits">
+      Built with <i class="fas fa-heart"></i> in Dubai.
+    </div>
+  </div>
+</footer>

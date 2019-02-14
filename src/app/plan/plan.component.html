@@ -1,0 +1,185 @@
+<div class="alert alert-danger fixed-top" role="alert" style="z-index: 1031;" *ngIf="showMessage">
+  {{showMessage}}
+</div>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #ffffff1c">
+  <a class="navbar-brand" routerLink="/"><img width="120" src="assets/img/SEARCHFUSELogo.png" alt="" title=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/plans"><i class="fas fa-arrow-left fa-lg"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="row mt-5 pt-4">
+
+    <!-- main section -->
+    <div class="col-md-8 col-lg-8">
+      <!-- style="width: auto" -->
+      <h2 class="mb-2">{{plan.title}}</h2>
+
+      <ng-template #t let-fill="fill"> <span class="star" [class.full]="fill === 100"> <span class="half"
+            [style.width.%]="fill">&hearts;</span>&hearts; </span> </ng-template>
+
+      <h6>
+        <i class="fas fa-star" style="color: #FF3366;"></i>
+        <i class="fas fa-star" style="color: #FF3366;"></i>
+        <i class="fas fa-star" style="color: #FF3366;"></i>
+        <i class="fas fa-star" style="color: #FF3366;"></i>
+        <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+        {{plan&&plan.reviews?plan.reviews.substring(0,plan.reviews.indexOf('ws')+2):""}} <i class="fas fa-shopping-cart"></i>
+        {{plan&&plan.reviews?plan.reviews.substring(plan.reviews.indexOf('ws')+2,plan.reviews.lenght):""}}
+        
+      </h6>
+
+      <br>
+
+      <br>
+      <img [src]="'assets/img/plans/'+ section+'.jpg'" class="img-fluid mt-3 img-thumbnail" alt="" class="" style="max-width: 100%">
+
+      <!-- <div  class="mt-2 mb-2 " > -->
+      <!-- style="position: -webkit-sticky; /* Safari */ position: sticky;top: 70px;" -->
+      <!-- <a type="button" class="btn btn-primary btn-lg mb-2 text-center" *ngIf="!user" href="/login">Login to Subscribe</a> -->
+      <!-- style="width: 100%;text-align: left;" -->
+      <button type="button" class="btn btn-primary btn-lg hide-on-md fixed-bottom" (click)="creditCard(plan.price)"
+        style="width: 100%" *ngIf="user">
+        Buy AED {{plan.price}}</button>
+      <button type="button" class="btn btn-primary btn-lg hide-on-md fixed-bottom"
+        style="width: 100%" *ngIf="!user" data-toggle="modal" data-target="#balanceModal">
+        Buy AED {{plan.price}}</button>
+      <!-- </div> -->
+
+      <!-- <h5 class="mt-3">Profolio</h5>
+      ... -->
+      <hr>
+      <h5 class="mt-3">Description</h5>
+      <p>{{plan.description}}</p>
+
+      <hr>
+
+      <h5 class="mt-3">What you can expect:</h5>
+      <ul>
+        <li *ngFor="let item of plan.expect; index as i; first as isFirst">{{item}}</li>
+      </ul>
+
+      <hr>
+
+      <h5 class="mt-3">What we need from you:</h5>
+      <ul>
+        <li *ngFor="let item of plan.need; index as i; first as isFirst">{{item}}</li>
+      </ul>
+
+
+
+
+      <div *ngIf="plan.comment&& plan.comment.lenght > 0">
+        <hr>
+
+        <h5 class="mt-3">Reviews (61) <ngb-rating [(rate)]="currentRate" [readonly]="true"></ngb-rating>
+        </h5>
+
+        <div class="media" *ngFor="let item of plan.comment; index as i; first as isFirst">
+          <!-- <img class="mr-3" src=".../64x64" alt="avatar"> -->
+          <div class="media-body">
+            <h5 class="mt-0">{{item.name}}</h5>
+            {{item.comment}}
+          </div>
+        </div>
+
+        <a>Read more <i class="fas fa-angle-down"></i></a><!-- (click)="showAllComment = !showAllComment" -->
+      </div>
+
+      <hr>
+
+      <h5 class="mt-3 mb-2">FAQs:</h5>
+
+      <div class="">
+        <div class="media mb-3" *ngFor="let item of plan.faqObj; index as i; first as isFirst">
+          <!-- <img class="mr-3" src=".../64x64" alt="image"> -->
+          <div class="media-body">
+            <h5 class="mt-0">{{item.ask}}</h5>
+            {{item.response}}
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- secondary section -->
+    <div class="col-md-4 col-lg-4 col-sm-12 d-none d-sm-block" style="position: fixed; right: 0;">
+      <button type="button" class="btn btn-primary btn-lg mb-2 text-center" style="width: 100%" *ngIf="!user" data-toggle="modal" data-target="#balanceModal">Subscribe
+        for AED {{plan.price}}</button>
+      <button type="button" class="btn btn-primary btn-lg mb-2 text-center" style="width: 100%" (click)="creditCard(plan.price)" *ngIf="user">Subscribe
+        for AED {{plan.price}}</button>
+
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-center">100% Satisfaction Guaranteed</h5>
+          <hr>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+          <p class="card-text text-center"><i class="fas fa-dollar-sign"></i> 30 Day Money Back Guarantee</p>
+          <p class="card-text text-center"><i class="fas fa-file-signature"></i> No Contracts. Cancel Anytime.</p>
+          <p class="card-text text-center"><i class="fas fa-glasses"></i> Hand-picked Growth Experts.</p>
+        </div>
+      </div>
+
+      <div class="card mt-3" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-center">Have a Question?</h5>
+          <hr>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+          <p class="card-text"> <i class="fas fa-comments"></i> Or live chat with ...</p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer id="footer" class="mt-4" style="width: auto !important">
+  <div class="container">
+    <div class="copyright">
+      &copy; 2018 <strong>Searchfuse Marketing Management</strong>.
+    </div>
+    <div class="credits">
+      Built with <i class="fas fa-heart"></i> in Dubai.
+    </div>
+  </div>
+</footer>
+
+
+<!-- Modal -->
+<div class="modal fade" id="balanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Please provide your email:</label>
+        <input type="text" class="form-control" aria-label="Search" [value]="email" (input)="email = $event.target.value"
+          aria-describedby="basic-addon2">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!validEmail(email)" (click)="creditCard(plan.price)">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

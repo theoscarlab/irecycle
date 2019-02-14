@@ -1,0 +1,346 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #ffffff1c">
+  <a class="navbar-brand" routerLink="/"><img width="120" src="assets/img/SEARCHFUSELogo.png" alt="" title=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item click active">
+        <a class="nav-link">Plans</a>
+      </li>
+      <li class="nav-item click" *ngIf="!user">
+        <a class="nav-link" routerLink="/login">Login </a>
+      </li>
+      <li class="nav-item click" *ngIf="user">
+        <a class="nav-link" routerLink="/dashboard">Dashboard </a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+
+      <!-- <input class="form-control mr-sm-2" type="text" [value]="search" (input)="search = $event.target.value"
+        placeholder="Search"> -->
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0" >Search</button> -->
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" [value]="search"
+          (input)="search = $event.target.value" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<div id="social-media" class="mb-5"></div>
+
+<div class="row mt-5 pt-1">
+  <!-- side bar -->
+  <div class="col-md-2 d-none d-sm-block">
+
+    <ul class="sidebar navbar-nav navbar-fixed-left pl-1" style="background-image: linear-gradient(-55deg, #663FB5 0%, #2B8BE3 100%);height: 100%;">
+      <li class="nav-item active click" style="height: 14%">
+        <a class="nav-link text-light mt-3" (click)="scroll('social-media')">
+          <h5><i class="fas fa-code-branch" ></i> Social Media</h5>
+        </a>
+      </li>
+      <li class="nav-item click" style="height: 14%">
+        <a class="nav-link text-light" (click)="scroll('inbound-content')">
+          <h5><i class="fas fa-code-branch" ></i> Inbound content</h5>
+        </a>
+      </li>
+      <li class="nav-item click" style="height: 14%">
+        <a class="nav-link text-light" (click)="scroll('seo')">
+          <h5><i class="fas fa-search" ></i> SEO</h5>
+        </a>
+      </li>
+      <li class="nav-item click" style="height: 14%">
+        <a class="nav-link text-light" (click)="scroll('sales')">
+          <h5><i class="fas fa-chart-line" ></i> Sales</h5>
+        </a>
+      </li>
+      <li class="nav-item click" style="height: 14%">
+        <a class="nav-link text-light" (click)="scroll('paid-ads')">
+          <h5><i class="fas fa-chart-area" ></i> Paid Ads</h5>
+        </a>
+      </li>
+      <li class="nav-item click" style="height: 14%">
+        <a class="nav-link text-light" (click)="scroll('website')">
+          <h5><i class="fas fa-chart-bar" ></i> Website</h5>
+        </a>
+      </li>
+      <li class="nav-item click" style="height: 14%">
+        <a class="nav-link text-light" (click)="scroll('public-relations')">
+          <h5><i class="fas fa-code-branch" ></i> Public Relations</h5>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- main section -->
+  <div class="col-md-10">
+    <div id="gigListings" class="container">
+      <!--  -->
+      <div data-type="category" category="social-media">
+
+        <h3 class="text-center mt-5">Social Media</h3>
+
+        <div class="row" style="margin-top:2em;">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of socialMedia; index as i; first as isFirst">
+
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="inbound-content" class="mb-5"></div>
+      <hr>
+      <div data-type="category" category="inbound-content">
+        <h3 class="text-center">Inbound Content</h3>
+        <div class="row" style="margin-top:2em;" data-equalizer="vphclz-equalizer" data-resize="phnru1-eq" data-events="resize">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of inboundContent; index as i; first as isFirst">
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient2" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="seo" class="mb-5"></div>
+      <hr>
+      <div data-type="category" category="seo">
+        <h3 class="text-center">SEO</h3>
+        <div class="row" style="margin-top:2em;" data-equalizer="0m7hkm-equalizer" data-resize="kqs49e-eq" data-events="resize">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of seo; index as i; first as isFirst">
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="sales" class="mb-5"></div>
+      <hr>
+      <div id="sales" data-type="category" category="sales">
+        <h3 class="text-center">Sales</h3>
+        <div class="row" style="margin-top:2em;" data-equalizer="nnj8xt-equalizer" data-resize="23f1q0-eq" data-events="resize">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of sales; index as i; first as isFirst">
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient2" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="paid-ads" class="mb-5"></div>
+      <hr>
+      <div data-type="category" category="paid-ads">
+        <h3 class="text-center">Paid ads</h3>
+        <div class="row" style="margin-top:2em;" data-equalizer="we0ezb-equalizer" data-resize="hnpydh-eq" data-events="resize">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of paidAds; index as i; first as isFirst">
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="website" class="mb-5"></div>
+      <hr>
+      <div data-type="category" category="website">
+        <h3 class="text-center">Website</h3>
+        <div class="row" style="margin-top:2em;" data-equalizer="e5lwx0-equalizer" data-resize="9j69t1-eq" data-events="resize">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of website; index as i; first as isFirst">
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient2" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="public-relations" class="mb-5"></div>
+      <hr>
+      <div data-type="category" category="public-relations">
+        <h3 class="text-center">Public Relations</h3>
+        <div class="row" style="margin-top:2em;" data-equalizer="0av00n-equalizer" data-resize="z1d49m-eq" data-events="resize">
+
+          <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2" [ngClass]="{'d-none': search!==''&&!inSeach(search,item.title)}"
+            *ngFor="let item of publicRelations; index as i; first as isFirst">
+            <div class="card click" (click)='details(item.id)' *ngIf="search===''||inSeach(search,item.title)">
+              <div class="card__shadow">
+                <img class="card-img-top bg--gradient" [src]="getImage(item.title)" alt="">
+                <div class="card-body" data-equalizer-watch="" style="height: 251px;">
+                  <div class="card__header--gigs row">
+                    <h6 class="card-title float-left col-8" style="color:#040504;font-size: 1em;font-weight: 600;">{{item.title|translate}}</h6>
+                    <p class="text-right col-4" style="color:#040504;font-size: .875em;font-weight: 500;">AED
+                      {{item.price}}</p>
+                  </div>
+                  <div class="card__rating">
+
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star" style="color: #FF3366;"></i>
+                    <i class="fas fa-star-half-alt" style="color: #FF3366;"></i>
+                    <span class="ml-1">{{item.minReviews}} </span><!-- 61 {{'Reviews'|translate}} -->
+                  </div>
+                  <p class="card-text mt-2" style="color: #5e5266;font-size: .875em;">{{item.minDescription}}</p>
+                  <!-- {{'Instagram Growth Engine Desc'|translate}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

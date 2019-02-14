@@ -1,0 +1,289 @@
+<dashboard-navbar></dashboard-navbar>
+
+<div id="wrapper">
+
+  <dashboard-sidebar></dashboard-sidebar>
+
+  <div id="content-wrapper">
+
+    <div class="container-fluid">
+      <h2>Order Management</h2>
+      <hr>
+
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Order Management</li>
+      </ol>
+
+      <div class="row">
+        <div class="col-md-8">
+          <!-- order -->
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="media">
+                <img class="mr-3" [src]="'assets/img/plans/'+ plan.id+'.jpg'" width="100" alt="Generic placeholder image">
+                <div class="media-body">
+                  <h4>{{plan.title}}</h4>
+                  <p>Order:{{order._id}} | {{order.date?order.date.substr(0,order.date.indexOf("T")):""}} | <span>View
+                      invoice</span></p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card-footer text-muted" *ngIf="serv.isUserManage() && order.order && order.order.requirementsAcepted">
+              <div *ngIf="order.order && order.order.rating !== 0" class="float-left" data-toggle="modal" data-target="#reviewRateModal" >
+                <i class="fas fa-star" *ngFor="let item of starArray"></i>
+                <i class="far fa-star" *ngFor="let item of emptyStarArray"></i>
+              </div>
+
+              <button type="button" class="btn btn-success float-right" (click)="orderCompleted()" title="Complete Order"
+                [disabled]="order.order&&order.order.orderComplete">Complete</button>
+            </div>
+
+            <div class="card-footer text-muted" *ngIf="!serv.isUserManage() && order.order && order.order.orderComplete">
+              <div *ngIf="order.order && order.order.rating !== 0" class="float-left">
+                <i class="fas fa-star" *ngFor="let item of starArray"></i>
+                <i class="far fa-star" *ngFor="let item of emptyStarArray"></i>
+              </div>
+              <button type="button" class="btn btn-success float-right" title="Rate Order" data-toggle="modal"
+                data-target="#rateModal">Rate</button>
+            </div>
+          </div>
+
+          <!-- requirements -->
+          <div class="card mb-3">
+            <div class="card-body">
+
+              <h4>Order requirements <small class="float-right"><i class="fas fa-sort-up" *ngIf="showRequirements"
+                    (click)="setShowReq(false)"></i><i class="fas fa-sort-down" *ngIf="!showRequirements" (click)="setShowReq(true)"></i></small></h4>
+              <div *ngIf="showRequirements">
+                <ul class="mb-5">
+                  <li *ngFor="let item of plan.need; index as i; first as isFirst">{{item}}</li>
+                </ul>
+
+                <label for="requirements"> Please enter the requirements:</label>
+                <textarea name="" id="requirements" cols="30" rows="10" style="width: 100%" [(ngModel)]="requirements"
+                  class="mb-5"></textarea>
+
+                <button type="button" class="btn btn-success float-right ml-1" (click)="saveRequirements()">Save</button>
+                <button type="button" class="btn btn-success float-right" *ngIf="serv.isUserManage()" (click)="requirementsAcepted()"
+                  [disabled]="order.order&&order.order.requirementsAcepted">Acept Requirements </button>
+              </div>
+
+              <p *ngIf="!showRequirements&&!requirements"> Need Requirements </p>
+              <p *ngIf="!showRequirements && order.order && order.order.requirementsAcepted"> Requirements completed</p>
+              <p *ngIf="!showRequirements && order.order && !order.order.requirementsAcepted">  Waiting for Acceptance</p>
+
+            </div>
+          </div>
+
+          <p class="text-center" *ngIf="order.order&&order.order.requirementsAcepted">Order Started|Delivery due on:
+            {{order.order.delivery.substr(0,order.order.delivery.indexOf("T"))}}</p>
+          <p class="text-center" *ngIf="showRequirements&&!requirements">Waiting for Requirements</p>
+          <p class="text-center" *ngIf="showRequirements && order.order && !order.order.requirementsAcepted"> Waiting for Acceptance</p>
+
+          <!-- messages -->
+          <div class="card mb-3">
+            <!-- /.panel-heading -->
+            <div class="card-body">
+              <h4 class="text-center">Messages</h4>
+              <ul class="chat">
+                <li class="left clearfix" *ngFor="let item of messages; index as i; first as isFirst">
+                  <div *ngIf="!item.isAdmin">
+                    <span class="chat-img float-left">
+                      <i class="fas fa-user fa-3x"></i>
+                      <!-- <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /> -->
+                    </span>
+                    <div class="chat-body clearfix">
+                      <div class="header">
+                        <strong class="primary-font">{{item.fromName}}</strong>
+                        <small class="float-right text-muted"><i class="far fa-clock"></i> {{item.date}}</small>
+                      </div>
+                      <p>
+                        {{item.text}}
+                      </p>
+                    </div>
+                  </div>
+                  <div *ngIf="item.isAdmin">
+                    <span class="chat-img float-right">
+                      <!-- <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /> -->
+                      <i class="fas fa-user-tie fa-3x"></i>
+                    </span>
+                    <div class="chat-body clearfix">
+                      <div class="header">
+                        <small class=" text-muted"><i class="far fa-clock"></i> {{item.date}}</small>
+                        <strong class="float-right primary-font">{{item.fromName}}</strong>
+                      </div>
+                      <p>
+                        {{item.text}}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- message -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <label for="requirements"> Enter your message:</label>
+              <textarea name="" id="requirements" cols="30" rows="5" style="width: 100%" [(ngModel)]="message" class="mb-5"></textarea>
+
+              <button type="button" class="btn btn-success float-right ml-1" (click)="sendMessage()">Send</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+
+          <div class="card mb-3">
+            <div class="card-body">
+              <ul class="timeline">
+                <li class="timeline-inverted">
+                  <div class="timeline-badge success"><i class="fa fa-check"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h6 class="timeline-title">Placed Order</h6>
+                    </div>
+                    <!-- <div class="timeline-body">
+                      <p>The process start creating an account, and selecting the right plan for you.</p>
+                    </div> -->
+                  </div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge success"><i class="fa fa-check" *ngIf="order.order&&order.order.requirementsAcepted"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h6 class="timeline-title">Provide Requirements</h6>
+                    </div>
+                    <!-- <div class="timeline-body">
+                      <p>Select method of payment</p>
+                    </div> -->
+                  </div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge success"><i class="fa fa-check" *ngIf="order.order&&order.order.orderComplete"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h5 class="timeline-title">Order in Progress</h5>
+                    </div>
+                    <div class="timeline-body">
+                      <!-- <p *ngIf="order.order&&order.order.requirementsAcepted">Exciting stuff! The team is working now
+                        on your order</p> -->
+                    </div>
+                  </div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge success"><i class="fa fa-check" *ngIf="order.order&&order.order.rating"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h6 class="timeline-title">Review the Delivery</h6>
+                    </div>
+                    <div class="timeline-body">
+
+                    </div>
+                  </div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge success"><i class="fa fa-check" *ngIf="order.order&&order.order.rating"></i>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h6 class="timeline-title">Order Complete</h6>
+                    </div>
+                    <div class="timeline-body">
+
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <hr>
+              <p class="text-center">Something unclear?</p>
+              <p class="text-center click" (click)="goToPlanPage()">Check out our FAQs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<footer id="footer" style="width: auto !important">
+  <div class="container">
+    <div class="copyright">
+      &copy; 2018 <strong>Searchfuse Marketing Management</strong>.
+    </div>
+    <div class="credits">
+      Built with <i class="fas fa-heart"></i> in Dubai.
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rate Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Rate:</label>
+        <select name="" id="" [(ngModel)]="rating" class="form-control">
+          <option value="1">Bad</option>
+          <option value="2">Normal</option>
+          <option value="3">Good</option>
+          <option value="4">Very Good</option>
+          <option value="5">Excellent</option>
+        </select>
+
+        <label for="">Feedback:</label>
+        <textarea name="" id="" [(ngModel)]="feedback" class="form-control" cols="30" rows="5" style="width: 100%">
+        </textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="rateOrder()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reviewRateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Review Rate Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Rate:</label>
+        <p>{{rating}}</p>
+
+        <label for="">Feedback:</label>
+        <p>{{feedback}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

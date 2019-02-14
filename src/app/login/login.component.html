@@ -1,0 +1,51 @@
+<div class="alert alert-danger fixed-top" role="alert" style="z-index: 1031;" *ngIf="showMessage">
+  {{showMessage}}
+</div>
+
+<nav class="navbar navbar-light bg-light fixed-top">
+
+  <form class="form-inline" style="width: 100%;">
+    <a class="navbar-brand" routerLink="/"><i class="fas fa-arrow-left"></i></a>
+    <h5 class="text-center" style="margin-left: 45%">Login</h5>
+  </form>
+</nav>
+<div id="wall">
+  <!-- <header>
+    <a routerLink="/"><img src="assets/img/SEARCHFUSELogo.png" alt="Logo" class="mb-3"></a>
+  </header> -->
+  <main>
+    <!-- <h2>Member Area</h2> -->
+    <form>
+      <!-- #loginForm="ngForm" (ngSubmit)="login()" -->
+      <div class="form-group">
+        <label for="email" style="width: 100%">Email address</label>
+        <input type="email" class="input" [ngClass]="{'is-invalid': emailBlur && !validEmail(credentials.email)}" id="email"
+          name="email" [value]="credentials.email" (input)="credentials.email = $event.target.value" placeholder="Enter your email address"
+          required (blur)="emailBlur=true">
+        <div class="invalid-feedback" *ngIf="emailBlur && !validEmail(credentials.email)">
+          Please provide a valid email.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" style="width: 100%">Password</label>
+        <input type="password" class="input" id="password" name="password" [value]="credentials.password" (input)="credentials.password = $event.target.value"
+          placeholder="Enter your password" required>
+      </div>
+      <!-- <div class="mt-2 mb-2">
+        <div class="g-recaptcha" data-sitekey="6LdEXXcUAAAAAEI85xIBheOiSZqeUHLXGCnxhMQX" data-callback="recaptchaCallback"></div>
+      </div> -->
+      <button type="submit" (click)='login()' [disabled]="!validEmail(credentials.email)" class="btn btn-primary btn-lg float-rigth mt-5 mb-5"
+        style="width: 100%">{{loginTextButton}}</button>
+      <!-- style="float: right;margin-left: 100%;margin-right: 10px;" || !captcha-->
+      <div>
+        <a routerLink="/forgot-password" class="form-text text-muted">Forgot your password?</a>
+        <!--<a routerLink="/verification-email" class="form-text text-muted">
+          <span class="pointer">Resend verification email?</span>
+        </a> -->
+        <a href="/signup" class="form-text text-muted">Don't have an account? Create one right now</a>
+      </div>
+
+    </form>
+  </main>
+
+</div>

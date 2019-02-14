@@ -1,0 +1,27 @@
+<!-- <header><img src="assets/logo.png" alt="Logo" class="mb-3"></header> -->
+<main id="wall">
+  <div class="container text-center" id="success">
+      <i class="fas fa-trophy fa-3x mb-3"></i>
+      <p>Awesome, thank you for choose our services.</p>
+      <p>Please check your email</p>
+      <!-- <a class="mb-3" href="/orders">Go to Dashboard</a><br>   --> 
+      <a class="mb-3" href="/plans">Visit other plans</a>      
+  </div>
+</main>
+
+<script>
+   
+  dataLayer = [{
+  'transactionID': 'T12345', //javascript random number after T
+  'transactionAffiliation': 'Searchfuse Marketing', //static searcfuse marketing
+  'transactionTotal	': plan.price + (plan.price * 0.05), //total price that includes 5%
+  'transactionTax	': plan.price * 0.05, //5% of the product price
+  'coupon': 'SUMMER20',  
+  'transactionProducts': [{
+  'sku': 'P12345', //category name with no space + incremental number
+  'name': plan.title, // product name
+  'category': 'Social Media', //category name
+  'price': plan.price, // total price minus 5%
+  'quantity': 1}] //quantity
+  }];
+  </script>

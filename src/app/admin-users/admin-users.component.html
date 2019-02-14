@@ -1,0 +1,152 @@
+<div class="alert alert-danger fixed-top" role="alert" style="z-index: 1031;" *ngIf="showMessage">
+  {{showMessage}}
+</div>
+<dashboard-navbar></dashboard-navbar>
+
+<div id="wrapper">
+
+  <dashboard-sidebar></dashboard-sidebar>
+
+  <div id="content-wrapper">
+
+    <div class="container-fluid">
+      <h2>Users</h2>
+      <hr>
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Users</li>
+      </ol>
+
+      <!-- Icon Cards-->
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-primary o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="mr-5"># Users <br> {{users.length}}</div>
+            </div>
+            <!-- <a class="card-footer text-white clearfix small z-1" href="#">
+              <span class="float-left">View Details</span>
+              <span class="float-right">
+                <i class="fas fa-angle-right"></i>
+              </span>
+            </a> -->
+          </div>
+        </div>
+
+      </div>
+
+      <!--   Area Chart Example-->
+      <!--  <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Area Chart Example</div>
+        <div class="card-body">
+          <canvas id="myChart" width="100%" height="30"></canvas>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div> -->
+
+      <!-- DataTables Example -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+          Users</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table " id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>NAME</th>
+                  <th>LAST NAME</th>
+                  <th>PRICE</th>
+                  <th>CONFIRMATION</th>
+                  <th>MANAGER</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <!-- <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Office</th>
+                  <th>Age</th>
+                  <th>Start date</th>
+                  <th>Salary</th>
+                </tr>
+              </tfoot> -->
+              <tbody *ngFor="let item of users; index as i; first as isFirst">
+                <tr>
+                  <td>{{item.firstName}}</td>
+                  <td>{{item.lastName}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.emailConfirmation}}</td>
+                  <td>{{item.userType&&item.userType.length > 0?'Yes':'No'}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" title="Set as admin" (click)="toAdmin(item)">
+                      <i class="fas fa-user-astronaut" ></i>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1" title="Email verification" (click)="toAceptEmailVerification(item)">
+                      <i class="fas fa-user-check"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated</div>
+      </div>
+
+
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<footer id="footer" style="width: auto !important">
+  <div class="container">
+    <div class="copyright">
+      &copy; 2018 <strong>Searchfuse Marketing Management</strong>.
+    </div>
+    <div class="credits">
+      Built with <i class="fas fa-heart"></i> in Dubai.
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="balanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Get more balance</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="">Amount:</label>
+        <input type="number" class="form-control" aria-label="Search" [value]="amountToPut" (input)="amountToPut = $event.target.value"
+          aria-describedby="basic-addon2">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" >Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

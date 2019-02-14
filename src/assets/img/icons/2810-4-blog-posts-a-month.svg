@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="101px" height="69px" viewBox="0 0 101 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5 (25232) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 38</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Landing-page" sketch:type="MSArtboardGroup" transform="translate(-375.000000, -4703.000000)">
+            <g id="Group-27" sketch:type="MSLayerGroup" transform="translate(230.000000, 4640.000000)">
+                <g id="Group-18">
+                    <g id="Group-38" transform="translate(145.000000, 64.000000)">
+                        <g id="Group-37">
+                            <path d="M0,48 L48,48 L48,40 L0,40 L0,48 Z M0,28 L72,28 L72,20 L0,20 L0,28 Z M0,68 L24,68 L24,60 L0,60 L0,68 Z" id="Page-1" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                            <circle id="Oval-17" stroke="#FFFFFF" stroke-width="2" sketch:type="MSShapeGroup" cx="87.5" cy="12.5" r="12.5"></circle>
+                            <text id="x4" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="14" font-weight="526" letter-spacing="-0.560000002" fill="#FFFFFF">
+                                <tspan x="81" y="17">x4</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

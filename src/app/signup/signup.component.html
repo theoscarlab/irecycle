@@ -1,0 +1,69 @@
+<nav class="navbar navbar-light bg-light fixed-top">
+
+  <form class="form-inline" style="width: 100%;">
+    <a class="navbar-brand" routerLink="/"><i class="fas fa-arrow-left"></i></a>
+    <h5 class="text-center" style="margin-left: 45%">Sign Up</h5>
+  </form>
+</nav>
+<!-- <header>
+  <a routerLink="/">
+    <img src="assets/img/SEARCHFUSELogo.png" alt="Logo" class="mb-3">
+  </a>
+</header> -->
+<main class="mb-5" id="wall">
+  <form *ngIf="!signedup" id="form">
+    <!-- (ngSubmit)="signUp()" #signupForm="ngForm" -->
+    <!-- <h2>Join us</h2> -->
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="input" [(ngModel)]="user.firstName" id="firstName" name="firstName" placeholder="Enter your first name"
+        required (blur)="firstNameBlur=true" [ngClass]="{'is-invalid': firstNameBlur && user.firstName.length < 3}">
+      <div class="invalid-feedback" *ngIf="firstNameBlur && user.firstName.length < 3">
+        Please provide at least 3 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="input" [(ngModel)]="user.lastName" id="lastName" name="lastName" placeholder="Enter your last name"
+        required (blur)="lastNameBlur=true" [ngClass]="{'is-invalid': lastNameBlur && user.lastName.length < 3}">
+      <div class="invalid-feedback" *ngIf="lastNameBlur && user.lastName.length < 3">
+        Please provide at least 3 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="input" [ngClass]="{'is-invalid': emailBlur && !validEmail(user.email)}" [(ngModel)]="user.email"
+        id="email" name="email" placeholder="Enter your email address" required (blur)="emailBlur=true">
+      <div class="invalid-feedback" *ngIf="emailBlur && !validEmail(user.email)">
+        Please provide a valid email.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Pasword</label>
+      <input type="password" class="input" [ngClass]="{'is-invalid': passwordBlur && user.password}" [(ngModel)]="user.password"
+        id="password" name="password" placeholder="Enter your password" required (blur)="passwordBlur=true">
+      <div class="invalid-feedback" *ngIf="emailBlur && !validEmail(user.email)">
+        Please provide a valid password.
+      </div>
+    </div>
+    <div class="form-check mb-2">
+      <input type="checkbox" class="form-check-input" id="news_feed" name="news_feed" [(ngModel)]="user.news_feed">
+      <label class="form-check-label" for="news_feed">Stay updated with the latest news about us</label>
+
+    </div>
+    <div class="mt-2 mb-2">
+      <div class="g-recaptcha" data-sitekey="6LdEXXcUAAAAAEI85xIBheOiSZqeUHLXGCnxhMQX" data-callback="recaptchaCallback"></div>
+    </div>
+    <button [disabled]="!dataVerifications()" class="btn btn-primary mb-3" (click)="signUp()">{{joinTextButton}}</button>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <a href="/login" class="form-text text-muted"> Already registered? Login</a>
+
+  </form>
+  <div id="success" class="text-center" *ngIf="signedup">
+    <i class="far fa-envelope-open fa-3x"></i>
+    <p> Awesome, we have sent you an email with a link to confirm your account.</p>
+    <a href="/login" class="form-text text-muted">Back to Login</a>
+  </div>
+</main>

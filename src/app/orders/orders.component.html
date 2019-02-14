@@ -1,0 +1,231 @@
+<dashboard-navbar></dashboard-navbar>
+
+<div id="wrapper">
+
+  <dashboard-sidebar></dashboard-sidebar>
+
+  <div id="content-wrapper">
+
+    <div class="container-fluid">
+      <h2>Manage Orders</h2>
+      <hr>
+
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Orders</li>
+      </ol>
+
+      <!-- Icon Cards-->
+      <div class="row">
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fas fa-fw fa-shopping-cart"></i>
+              </div>
+              <div class="mr-5">Completed Orders <br> {{completedOrders}}</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body" *ngIf="!isDriver">
+          <button class="btn btn-primary btn-lg float-rigth " style="width: 100%" title="Rate Order" data-toggle="modal"
+            data-target="#createOrderModal">Add Order</button>
+
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <table class="table mt-5" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>ORDER DATE</th>
+                    <th>METAL</th>
+                    <th>PLASTIC</th>
+                    <th>PAPER</th>
+                    <th>GLASS</th>
+                    <th>POSSIBLE POINTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr (click)="goToOrder(item)" class="click" *ngIf="user.order">
+                    <!-- <tr *ngFor="let item of activeTable; index as i; first as isFirst" (click)="goToOrder(item)"
+                    class="click"> -->
+                    <td>{{user.order.date.substr(0,user.order.date.indexOf("T"))}}</td>
+                    <td>{{user.order.metal}}</td>
+                    <td>{{user.order.plastic}}</td>
+                    <td>{{user.order.paper}}</td>
+                    <td>{{user.order.glass}}</td>
+                    <td>{{user.order.possiblePoints}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body" *ngIf="isDriver">
+          <!--  <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true" (click)="setActiveTo('active')">ACTIVE</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#home" role="tab" aria-controls="profile"
+                aria-selected="false" (click)="setActiveTo('missing')">MISSING DETAILS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#home" role="tab" aria-controls="contact"
+                aria-selected="false" (click)="setActiveTo('awaiting')">AWAITING MY REVIEW</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#home" role="tab" aria-controls="contact"
+                aria-selected="false" (click)="setActiveTo('completed')">COMPLETED</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#home" role="tab" aria-controls="contact"
+                aria-selected="false" (click)="setActiveTo('cancelled')">CANCELLED</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#home" role="tab"
+                aria-controls="contact" aria-selected="false" (click)="setActiveTo('all')">ALL</a>
+            </li>
+          </ul> -->
+
+          <!-- <button class="btn btn-primary btn-lg float-rigth " style="width: 100%" title="Rate Order" data-toggle="modal"
+            data-target="#createOrderModal">Add Order</button> -->
+
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <table class="table mt-5" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>ORDER DATE</th>
+                    <th>METAL</th>
+                    <th>PLASTIC</th>
+                    <th>PAPER</th>
+                    <th>GLASS</th>
+                    <th>POSSIBLE POINTS</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let item of users; index as i; first as isFirst" (click)="goToOrder(item)" class="click">
+                    <td>{{item.order.date.substr(0,item.order.date.indexOf("T"))}}</td>
+                    <td>{{item.order.metal}}</td>
+                    <td>{{item.order.plastic}}</td>
+                    <td>{{item.order.paper}}</td>
+                    <td>{{item.order.glass}}</td>
+                    <td>{{item.order.possiblePoints}}</td>
+                    <td><button title="COMPLETED" type="button" class="btn btn-success"
+                        (click)="completedOrder(item)"><i class="fas fa-check"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated</div>
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<footer id="footer" style="width: auto !important">
+  <div class="container">
+    <div class="copyright">
+      &copy; 2018 <strong>IRecycle</strong>.
+    </div>
+    <div class="credits">
+      Built with <i class="fas fa-heart"></i> in Qatar.
+    </div>
+  </div>
+</footer>
+
+
+<!-- Modals -->
+
+<div class="modal fade" id="createOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="pass2" style="width: 100%">
+            <img width="120" src="assets/img/RecycleTypes/metal.jpeg" alt="metal" title="metal" class="circle"
+              style="width: 50px;">
+            Metal (kg)
+          </label>
+          <input type="number" class="input form-control" id="metal" name="metal" [(ngModel)]="metal">
+
+        </div>
+
+
+        <div class="form-group">
+          <label for="pass2" style="width: 100%">
+            <img width="120" src="assets/img/RecycleTypes/plastic.jpeg" alt="plastic" title="plastic" class="circle"
+              style="width: 50px;">
+            Plastic (kg)
+          </label>
+          <input type="number" class="input form-control" id="plastic" name="plastic" [(ngModel)]="plastic">
+        </div>
+
+        <div class="form-group">
+          <label for="pass2" style="width: 100%">
+            <img width="120" src="assets/img/RecycleTypes/paper.jpeg" alt="paper" title="paper" class="circle"
+              style="width: 50px;">
+            Paper (kg)
+          </label>
+          <input type="number" class="input form-control" id="paper" name="paper" [(ngModel)]="paper">
+        </div>
+
+        <div class="form-group">
+          <label for="pass2" style="width: 100%">
+            <img width="120" src="assets/img/RecycleTypes/glass.jpeg" alt="glass" title="glass" class="circle"
+              style="width: 50px;">
+            Glass (kg)
+          </label>
+          <input type="number" class="input form-control" id="glass" name="glass" [(ngModel)]="glass">
+        </div>
+        <div class="form-group">
+          <label for="pass2" style="width: 100%">Building No</label>
+          <input type="number" class="input form-control" id="BuildingNo" name="BuildingNo" [(ngModel)]="BuildingNo">
+          <label for="pass2" style="width: 100%">Zone</label>
+          <input type="number" class="input form-control" id="Zone" name="Zone" [(ngModel)]="Zone">
+          <label for="pass2" style="width: 100%">Street</label>
+          <input type="number" class="input form-control" id="Street" name="Street" [(ngModel)]="Street">
+
+          <!-- <button type="submit" class="btn btn-primary btn-lg float-rigth mt-5 mb-5" style="width: 100%"
+              (click)="findMap()">Find</button>
+
+            <div id='map' style='width: 400px; height: 300px;'></div> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createOrder()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

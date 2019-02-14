@@ -1,0 +1,51 @@
+
+.card__header--gigs{
+  color: #040504;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.card-text {
+  color: #5e5266;
+  font-size: .875em;
+  margin: 0;
+  max-width: 100%;
+}
+
+.card__reviews {
+  font-size: 0.8125em;
+  font-weight: 400;
+}
+
+.navbar-fixed-left {
+  width: 140px;
+  position: fixed;
+  border-radius: 0;
+  /* height: 100%; */
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  /* Cancel default li float: left */
+  width: 139px;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 160px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 140px;
+}
+
+.sidebar h5{
+  font-size: 1rem;
+}
+
+@media (min-width: 768px){
+  .sidebar {
+    width: 200px !important;
+  }
+}
+

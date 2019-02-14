@@ -1,0 +1,17 @@
+<!-- <header><img src="assets/logo.png" alt="Logo" class="mb-3"></header> -->
+<main class="wall" *ngIf="!error">
+  <div class="container text-center" id="success">    
+      <i class="far fa-envelope-open fa-3x"></i>
+      <p>Awesome, your account has been activated successfully.</p>
+      <p>Redirecting now to Dashboard...</p>
+      <!-- <a href="/login">Back to Login</a> -->      
+  </div>
+</main>
+
+<main class="wall" *ngIf="error">
+  <div class="container text-center" id="success">    
+      <i class="far fa-envelope-open fa-3x"></i>
+      <p>Sorry you code is not valid check again the link.</p>
+      <a href="/login">Back to Login</a>      
+  </div>
+</main>

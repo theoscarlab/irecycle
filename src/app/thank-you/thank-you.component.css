@@ -1,0 +1,39 @@
+/* mobile */
+@media (max-width: 768px) {
+  header, main {
+    width: 99%;
+    margin: 0px auto;
+  }
+  
+}
+
+@media (min-width: 768px){
+  header, main {
+    width: 40%;
+    margin: 0px auto;
+  }  
+}
+
+#wall{
+  margin-top: 100px
+}
+
+header {
+  /* text-align: center; */
+  margin-top: 100px;
+}
+
+main {
+  background-color: white;
+  /* border-radius: 10px; */
+  box-shadow: 2px 2px 2px 2px  rgba(29, 22, 15, 0.7);
+  padding: 20px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+img{
+  width: 150px;
+}
