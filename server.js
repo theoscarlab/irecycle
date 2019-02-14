@@ -79,7 +79,7 @@ api.init(app)
 /* const payment = require('./server/routes/payment');
 app.use('/pay', payment); */
 
-const port = process.env.PORT || '4000';
+const port = process.env.PORT || '80';
 app.set('port', port);
 
 /* var certOptions = {
