@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
       this.featuredPlans = res.slice(0, 6)
     })
     this.user = JSON.parse(this.usrServ.getSession('user'));
-    this.usrServ.initMeta()
   }
 
   getImage(title: string) {

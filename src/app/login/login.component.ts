@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
       console.log("done", this.captcha)
       $("#email").focus()
     }
-    this.usrServ.initMeta()
   }
 
   login() {

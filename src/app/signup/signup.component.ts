@@ -40,7 +40,6 @@ export class SignupComponent implements OnInit {
       console.log("done",this.captcha)
       $("#email").focus()
     }     
-    this.usrServ.initMeta()
 
     this.route.queryParams
       .subscribe(params => {

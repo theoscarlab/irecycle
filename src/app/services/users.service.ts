@@ -23,9 +23,9 @@ const httpOptionsFiles = {
 export class UsersService {
 
   private apiURL = '/api/v1';  // URL to web api
-  private appPrefix = 'denarii_whitelisting_'
+  private appPrefix = 'irecycle_app'
   //SERVER_URL = 'https://searchfuse.com';
-  SERVER_URL = 'http://localhost:4000';
+  SERVER_URL = 'http://localhost';
   socket: any = {};
 
   constructor(
@@ -33,27 +33,27 @@ export class UsersService {
     private router: Router,
     private meta: Meta
   ) {
-    this.initSocket()
+    //this.initSocket()
   }
 
   //sockets
   public initSocket(): void {
-    this.socket = socketIo(this.SERVER_URL);
+    //this.socket = socketIo(this.SERVER_URL);
   }
 
   public send(message: string): void {
-    this.socket.emit('message', message);
+    //this.socket.emit('message', message);
   }
 
   public onMessage(): Observable<string> {
     return new Observable<string>(observer => {
-      this.socket.on('message', (data: string) => observer.next(data));
+      //this.socket.on('message', (data: string) => observer.next(data));
     });
   }
 
   public onEvent(event: Event): Observable<any> {
     return new Observable<Event>(observer => {
-      this.socket.on(event, () => observer.next());
+      //this.socket.on(event, () => observer.next());
     });
   }
   //sockets
@@ -263,14 +263,6 @@ export class UsersService {
 
   authorizingPayment(data): Observable<any> {
     return this.http.post(`${this.apiURL}/authorizingPayment`, data, httpOptions)
-  }
-
-  initMeta() {
-    $("[name*='description']").remove()
-    this.meta.addTag({ name: 'description', content: "Searchfuse is a growth hacker marketplace for on-demand marketing service providers. In just a few clicks, you can get expert digital marketers support your digital marketing needs." });
-    document.title = "On-demand Digital Marketers  - Searchfuse"
-    /* this.meta.addTag({ name: 'author', content: 'talkingdotnet' });
-    this.meta.addTag({ name: 'keywords', content: 'Angular, Meta Service' }); */
   }
 
   isUserManage() {

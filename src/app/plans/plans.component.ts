@@ -41,7 +41,6 @@ export class PlansComponent implements OnInit {
       this.publicRelations = this.plans.slice(55, this.plans.length)
     })
     this.user = JSON.parse(this.usrServ.getSession('user'));
-    this.usrServ.initMeta()
   }
 
   details(id) {
